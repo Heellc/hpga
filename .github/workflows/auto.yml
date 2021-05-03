@@ -1,0 +1,406 @@
+name: auto
+on:
+  schedule:
+    - cron:  '0 */3 * * *'
+  workflow_dispatch:
+jobs:
+  CDN1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN4:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN5:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN6:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN7:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN8:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN9:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  CDN10:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
+          tar -zxvf ./frp_0.36.2_linux_amd64.tar.gz
+          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          
+          [proxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN }}
+          IP: ${{ secrets.IP }}
+          PORT: ${{ secrets.PORT }}
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
