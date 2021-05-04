@@ -2,7 +2,7 @@ name: proxy
 on:
   workflow_dispatch:
 jobs:
-  CDN1:
+  Proxy:
     runs-on: ubuntu-latest
     steps:
       - name: Download frpc
