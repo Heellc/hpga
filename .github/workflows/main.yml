@@ -24,7 +24,6 @@ jobs:
           [common]
           server_addr = $IP
           server_port = $PORT
-          protocol = kcp
           privilege_token = $TOKEN
           tls_enable = true
           tls_key_file = ./id_rsa.pub
