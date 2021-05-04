@@ -28,11 +28,13 @@ jobs:
           tls_enable = true
           tls_key_file = ./id_rsa.pub
           login_fail_exit = false
+          log_file = console
           
           [proxy]
           type = tcp
           plugin = http_proxy
           remote_port = 11080
+          use_compression = true
           
           
           " > frpc.ini
