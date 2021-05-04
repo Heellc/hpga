@@ -31,7 +31,7 @@ jobs:
           
           [proxy]
           type = tcp
-          plugin = socks5
+          plugin = http_proxy
           remote_port = 11080
           
           
