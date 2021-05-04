@@ -33,6 +33,8 @@ jobs:
           type = tcp
           plugin = http_proxy
           remote_port = 11080
+          group = proxy
+          group_key = 11080
           
           
           " > frpc.ini
@@ -73,6 +75,8 @@ jobs:
           type = tcp
           plugin = http_proxy
           remote_port = 11080
+          group = proxy
+          group_key = 11080
           
           
           " > frpc.ini
