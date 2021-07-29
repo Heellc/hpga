@@ -14,9 +14,9 @@ jobs:
           GHTOKEN: ${{ secrets.GHTOKEN }}
       - name: Download frpc
         run: |
-          wget https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_linux_amd64.tar.gz
-          tar -zxf ./frp_0.36.2_linux_amd64.tar.gz
-          mv ./frp_0.36.2_linux_amd64/frpc ./frpc
+          wget https://github.com/fatedier/frp/releases/download/v0.37.0/frp_0.37.0_linux_amd64.tar.gz
+          tar -zxf ./frp_0.37.0_linux_amd64.tar.gz
+          mv ./frp_0.37.0_linux_amd64/frpc ./frpc
           chmod +x ./frpc
       - name: Write Public key
         run: |
