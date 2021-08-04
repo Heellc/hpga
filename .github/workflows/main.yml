@@ -37,11 +37,15 @@ jobs:
           login_fail_exit = false
           log_file = console
           
-          [proxy]
+          [httpproxy]
           type = tcp
           plugin = http_proxy
           remote_port = 11080
           
+          [socks5]
+          type = tcp
+          plugin = socks5
+          remote_port = 11081
           
           " > frpc.ini
         env: 
