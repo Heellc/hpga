@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Run next action
         run: |
-          (sleep 5h 50m && \
+          (sleep 5h 59m && \
           curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GHTOKEN" \
           $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/$GITHUB_WORKFLOW/dispatches -d '{"ref":"main"}') &
         env:
