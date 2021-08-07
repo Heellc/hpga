@@ -7,11 +7,12 @@ jobs:
     steps:
       - name: Run next action
         run: |
-          (sleep 5h 59m && \
+          (sleep 5h 55m && \
           curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GHTOKEN" \
-          $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/$GITHUB_WORKFLOW/dispatches -d '{"ref":"main"}') &
-        env:
-          GHTOKEN: ${{ secrets.GHTOKEN }}
+          https://api.github.com/repos/Heellc/hpga/actions/workflows/$GITHUB_WORKFLOW/dispatches -d '{"ref":"main"}') &
+  First:
+    runs-on: ubuntu-latest
+    steps:
       - name: Download frpc
         run: |
           wget https://github.com/fatedier/frp/releases/download/v0.37.0/frp_0.37.0_linux_amd64.tar.gz
@@ -22,7 +23,7 @@ jobs:
         run: |
           echo $PUBKEY > ./id_rsa.pub
         env:
-          PUBKEY: ${{ secrets.PUBKEY }}
+          PUBKEY: ${{ secrets.PUBKEY_N1N }}
       - name: Write frp ini
         run: |
           echo "
@@ -49,9 +50,66 @@ jobs:
           
           " > frpc.ini
         env: 
-          TOKEN: ${{ secrets.TOKEN }}
-          IP: ${{ secrets.IP }}
-          PORT: ${{ secrets.PORT }}
+          TOKEN: ${{ secrets.TOKEN_N1N }}
+          IP: ${{ secrets.IP_N1N }}
+          PORT: ${{ secrets.PORT_N1N }}
+      - name: Set ip secretly
+        run: |
+          echo "::add-mask::0"
+          echo "::add-mask::1"
+          echo "::add-mask::2"
+          echo "::add-mask::3"
+          echo "::add-mask::4"
+          echo "::add-mask::5"
+          echo "::add-mask::6"
+          echo "::add-mask::7"
+          echo "::add-mask::8"
+          echo "::add-mask::9"
+      - name: Start frp
+        run: ./frpc -c ./frpc.ini
+  Second:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download frpc
+        run: |
+          wget https://github.com/fatedier/frp/releases/download/v0.37.0/frp_0.37.0_linux_amd64.tar.gz
+          tar -zxf ./frp_0.37.0_linux_amd64.tar.gz
+          mv ./frp_0.37.0_linux_amd64/frpc ./frpc
+          chmod +x ./frpc
+      - name: Write Public key
+        run: |
+          echo $PUBKEY > ./id_rsa.pub
+        env:
+          PUBKEY: ${{ secrets.PUBKEY_N2N }}
+      - name: Write frp ini
+        run: |
+          echo "
+          
+          
+          [common]
+          server_addr = $IP
+          server_port = $PORT
+          privilege_token = $TOKEN
+          tls_enable = true
+          tls_key_file = ./id_rsa.pub
+          login_fail_exit = false
+          log_file = console
+          
+          [httpproxy]
+          type = tcp
+          plugin = http_proxy
+          remote_port = 11080
+          
+          [socks5]
+          type = tcp
+          plugin = socks5
+          remote_port = 11081
+          
+          " > frpc.ini
+        env: 
+          TOKEN: ${{ secrets.TOKEN_N2N }}
+          IP: ${{ secrets.IP_N2N }}
+          PORT: ${{ secrets.PORT_N2N }}
       - name: Set ip secretly
         run: |
           echo "::add-mask::0"
