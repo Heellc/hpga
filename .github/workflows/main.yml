@@ -7,9 +7,9 @@ jobs:
     steps:
       - name: Run next action
         run: |
-          (sleep 5h 55m && \
+          sleep 5h 55m
           curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GHTOKEN" \
-          https://api.github.com/repos/Heellc/hpga/actions/workflows/$GITHUB_WORKFLOW/dispatches -d '{"ref":"main"}') &
+          https://api.github.com/repos/Heellc/hpga/actions/workflows/$GITHUB_WORKFLOW/dispatches -d '{"ref":"main"}'
   First:
     runs-on: ubuntu-latest
     steps:
