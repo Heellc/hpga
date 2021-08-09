@@ -9,9 +9,13 @@ jobs:
         run: |
           sleep 5h 55m
           curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GHTOKEN" \
-          https://api.github.com/repos/Heellc/hpga/actions/workflows/$GITHUB_WORKFLOW/dispatches -d '{"ref":"main"}'
+          $APIURL/repos/$REPO/actions/workflows/$WORKNAME/dispatches -d '{"ref":"main"}'
         env:
           GHTOKEN: ${{ secrets.GHTOKEN }}
+          WORKNAME: GITHUB_WORKFLOW
+          REPO: GITHUB_REPOSITORY
+          APIURL: GITHUB_API_URL
+          
   First:
     runs-on: ubuntu-latest
     steps:
