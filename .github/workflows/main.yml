@@ -18,9 +18,9 @@ jobs:
     steps:
       - name: Download frpc
         run: |
-          wget https://github.com/fatedier/frp/releases/download/v0.37.0/frp_0.37.0_linux_amd64.tar.gz
-          tar -zxf ./frp_0.37.0_linux_amd64.tar.gz
-          mv ./frp_0.37.0_linux_amd64/frpc ./frpc
+          wget https://github.com/fatedier/frp/releases/download/v0.37.1/frp_0.37.1_linux_amd64.tar.gz
+          tar -zxf ./frp_0.37.1_linux_amd64.tar.gz
+          mv ./frp_0.37.1_linux_amd64/frpc ./frpc
           chmod +x ./frpc
       - name: Write Public key
         run: |
@@ -35,7 +35,7 @@ jobs:
           [common]
           server_addr = $IP
           server_port = $PORT
-          privilege_token = $TOKEN
+          token = $TOKEN
           tls_enable = true
           tls_key_file = ./id_rsa.pub
           login_fail_exit = false
@@ -75,9 +75,9 @@ jobs:
     steps:
       - name: Download frpc
         run: |
-          wget https://github.com/fatedier/frp/releases/download/v0.37.0/frp_0.37.0_linux_amd64.tar.gz
-          tar -zxf ./frp_0.37.0_linux_amd64.tar.gz
-          mv ./frp_0.37.0_linux_amd64/frpc ./frpc
+          wget https://github.com/fatedier/frp/releases/download/v0.37.0/frp_0.37.1_linux_amd64.tar.gz
+          tar -zxf ./frp_0.37.1_linux_amd64.tar.gz
+          mv ./frp_0.37.1_linux_amd64/frpc ./frpc
           chmod +x ./frpc
       - name: Write Public key
         run: |
@@ -92,7 +92,7 @@ jobs:
           [common]
           server_addr = $IP
           server_port = $PORT
-          privilege_token = $TOKEN
+          token = $TOKEN
           tls_enable = true
           tls_key_file = ./id_rsa.pub
           login_fail_exit = false
