@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Download frpc
         run: |
-          wget https://github.com/fatedier/frp/releases/download/v0.37.0/frp_0.37.1_linux_amd64.tar.gz
+          wget https://github.com/fatedier/frp/releases/download/v0.37.1/frp_0.37.1_linux_amd64.tar.gz
           tar -zxf ./frp_0.37.1_linux_amd64.tar.gz
           mv ./frp_0.37.1_linux_amd64/frpc ./frpc
           chmod +x ./frpc
