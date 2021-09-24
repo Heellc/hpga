@@ -40,6 +40,7 @@ jobs:
           tls_trusted_ca_file = ./ca.crt
           login_fail_exit = false
           log_file = console
+          log_level = debug
           
           [httpproxy]
           type = tcp
