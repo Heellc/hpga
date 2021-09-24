@@ -24,7 +24,7 @@ jobs:
           chmod +x ./frpc
       - name: Write CA cert
         run: |
-          echo $CA > ./ca.crt
+          echo "$CA" > ./ca.crt
         env:
           CA: ${{ secrets.CA }}
       - name: Write frp ini
