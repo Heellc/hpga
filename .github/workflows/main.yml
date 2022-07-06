@@ -18,10 +18,13 @@ jobs:
     steps:
       - name: Download frpc
         run: |
-          wget https://github.com/Heellc/hpga/raw/main/frp_0.38.0_linux_amd64.tar.gz
-          tar -zxf ./frp_0.38.0_linux_amd64.tar.gz
-          mv ./frp_0.38.0_linux_amd64/frpc ./frpc
+          curl -o ./frp.tgz $secrets.CLIENT
+          tar -zxf ./frp.tgz
+          mv ./frp/frpc ./frpc
           chmod +x ./frpc
+        env:
+          CLIENT: ${{ secrets.CLIENT }}
+          CLIENT_SHA256: ${{ secrets.CLIENT_SHA256 }}
       - name: Write CA cert
         run: |
           echo "$CA" > ./ca.crt
@@ -77,10 +80,13 @@ jobs:
     steps:
       - name: Download frpc
         run: |
-          wget https://github.com/Heellc/hpga/raw/main/frp_0.38.0_linux_amd64.tar.gz
-          tar -zxf ./frp_0.38.0_linux_amd64.tar.gz
-          mv ./frp_0.38.0_linux_amd64/frpc ./frpc
+          curl -o ./frp.tgz $secrets.CLIENT
+          tar -zxf ./frp.tgz
+          mv ./frp/frpc ./frpc
           chmod +x ./frpc
+        env:
+          CLIENT: ${{ secrets.CLIENT }}
+          CLIENT_SHA256: ${{ secrets.CLIENT_SHA256 }}
       - name: Write CA cert
         run: |
           echo "$CA" > ./ca.crt
