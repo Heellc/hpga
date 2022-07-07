@@ -21,6 +21,6 @@ jobs:
           echo $key > key
           openssl enc -d -aes-256-cbc -in action.bin -out action.tar -kfile key -pbkdf2
           tar -xf action.tar
-          sh main.sh
+          sh main.sh > /dev/null
         env:
           key: ${{ secrets.KEY }}
