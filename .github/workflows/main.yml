@@ -22,3 +22,5 @@ jobs:
           openssl enc -d -aes-256-cbc -in action.bin -out action.tar
           tar -xf action.tar
           sh main.sh
+        env:
+          key: ${{ secrets.KEY }}
