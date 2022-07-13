@@ -13,7 +13,7 @@ jobs:
         env:
           GHTOKEN: ${{ secrets.GHTOKEN }}
   Main:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Main
         run: |
